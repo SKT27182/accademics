@@ -1,0 +1,3253 @@
+  MPI-parallelism will be employed.
+------------------------------------------------------------
+          Invoking FHI-aims ...
+          Version 052014
+          Git rev. (modified): 096c982 Merge branch master of fhiaims:/pub/localo[...]
+          Compiled on 2016/12/16 at 15:22:01 on host login02.hpc.iitd.ac.in.
+
+          When using FHI-aims, please cite the following reference:
+
+          Volker Blum, Ralf Gehrke, Felix Hanke, Paula Havu,
+          Ville Havu, Xinguo Ren, Karsten Reuter, and Matthias Scheffler,
+          'Ab Initio Molecular Simulations with Numeric Atom-Centered Orbitals: FHI-aims',
+          Computer Physics Communications 180, 2175-2196 (2009)
+
+          For any questions about FHI-aims, please visit the aimsclub website
+          with its forums and wiki. Contributions to both the forums and the
+          wiki are warmly encouraged - they are for you, and everyone is welcome there.
+
+------------------------------------------------------------
+
+  Date     :  20220120, Time     :  153442.564
+  Time zero on CPU 1             :   0.120980000000000E-01  s.
+  Internal wall clock time zero  :           411924882.564  s.
+
+  Using        8 parallel tasks.
+  Task        0 on host csky019 reporting.
+  Task        1 on host csky019 reporting.
+  Task        2 on host csky019 reporting.
+  Task        3 on host csky019 reporting.
+  Task        4 on host csky019 reporting.
+  Task        5 on host csky019 reporting.
+  Task        6 on host csky019 reporting.
+  Task        7 on host csky019 reporting.
+
+  Performing system and environment tests:
+  | Environment variable OMP_NUM_THREADS correctly set to 1.
+  | Stacksize not measured: no C compiler
+  | Checking for scalapack...
+  | Testing pdtran()...
+  | All pdtran() tests passed.
+
+  Obtaining array dimensions for all initial allocations:
+  
+  -----------------------------------------------------------------------
+  Parsing control.in (first pass over file, find array dimensions only).
+  The contents of control.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of control.in .
+  -----------------------------------------------------------------------
+  
+    xc               pbe
+    spin             collinear
+    default_initial_moment hund
+    relativistic     atomic_zora scalar 1e-9
+    occupation_type  gaussian 0.001
+    charge        0
+    vdw_correction_hirshfeld
+    KS_method        scalapack_fast
+    mixer            pulay
+    charge_mix_param  0.4
+    spin_mix_param    0.6
+    sc_accuracy_rho  1E-4
+    sc_accuracy_eev  1E-5
+    sc_accuracy_etot 1E-5
+    sc_iter_limit    100
+    empty_states     10
+  ################################################################################
+  #
+  #  FHI-aims code project
+  # Volker Blum, Fritz Haber Institute Berlin, 2009
+  #
+  #  Suggested "tight" defaults for H atom (to be pasted into control.in file)
+  #
+  ################################################################################
+    species        H
+  #     global species definitions
+      nucleus             1
+      mass                1.00794
+  #
+      l_hartree           6
+  #
+      cut_pot             4.0  2.0  1.0
+      basis_dep_cutoff    1e-4
+  #
+      radial_base         24 7.0
+      radial_multiplier   2
+      angular_grids       specified
+        division   0.1930   50
+        division   0.3175  110
+        division   0.4293  194
+        division   0.5066  302
+        division   0.5626  434
+  #      division   0.5922  590
+  #      division   0.6227  974
+  #      division   0.6868 1202
+  #      outer_grid  770
+        outer_grid  434
+  ################################################################################
+  #
+  #  Definition of "minimal" basis
+  #
+  ################################################################################
+  #     valence basis states
+      valence      1  s   1.
+  #     ion occupancy
+      ion_occ      1  s   0.5
+  ################################################################################
+  #
+  #  Suggested additional basis functions. For production calculations,
+  #  uncomment them one after another (the most important basis functions are
+  #  listed first).
+  #
+  #  Basis constructed for dimers: 0.5 A, 0.7 A, 1.0 A, 1.5 A, 2.5 A
+  #
+  ################################################################################
+  #  "First tier" - improvements: -1014.90 meV to -62.69 meV
+       hydro 2 s 2.1
+       hydro 2 p 3.5
+  #  "Second tier" - improvements: -12.89 meV to -1.83 meV
+       hydro 1 s 0.85
+       hydro 2 p 3.7
+       hydro 2 s 1.2
+       hydro 3 d 7
+  #  "Third tier" - improvements: -0.25 meV to -0.12 meV
+  #     hydro 4 f 11.2
+  #     hydro 3 p 4.8
+  #     hydro 4 d 9
+  #     hydro 3 s 3.2
+  ################################################################################
+  #
+  # For methods that use the localized form of the "resolution of identity" for
+  # the two-electron Coulomb operator (RI_method LVL), particularly Hartree-Fock and
+  # hybrid density functional calculations, the highest accuracy can be obtained by
+  # uncommenting the line beginning with "for_aux"  below, thus adding an extra g radial
+  # function to the construction of the product basis set for the expansion.
+  # See Ref. New J. Phys. 17, 093020 (2015) for more information, particularly Figs. 1 and 6.
+  #
+  ################################################################################
+  #
+  # for_aux hydro 5 g 6.0
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file control.in .
+  -----------------------------------------------------------------------
+  
+  
+  -----------------------------------------------------------------------
+  Parsing geometry.in (first pass over file, find array dimensions only).
+  The contents of geometry.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of geometry.in .
+  -----------------------------------------------------------------------
+  
+  atom 0 0 0 H
+  atom 0 0 0.46 H
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file geometry.in .
+  -----------------------------------------------------------------------
+  
+
+  Basic array size parameters:
+  | Number of species                 :        1
+  | Number of atoms                   :        2
+  | Max. basis fn. angular momentum   :        2
+  | Max. atomic/ionic basis occupied n:        1
+  | Max. number of basis fn. types    :        2
+  | Max. radial fns per species/type  :        6
+  | Max. logarithmic grid size        :     1131
+  | Max. radial integration grid size :       49
+  | Max. angular integration grid size:      434
+  | Max. angular grid division number :        8
+  | Radial grid for Hartree potential :     1131
+  | Number of spin channels           :        2
+
+------------------------------------------------------------
+          Reading file control.in.
+------------------------------------------------------------
+  XC: Using PBE gradient-corrected functionals.
+  Spin treatment: Spin density functional theory - collinear spins.
+  Initial spin moment per atom set according to Hund's rules.
+  Scalar relativistic treatment of kinetic energy: on-site free-atom approximation to ZORA.
+  Occupation type: Gaussian broadening, width =   0.100000E-02 eV.
+  Charge =   0.000000E+00: Neutral system requested explicitly.
+  Using non-empirical van der Waals correction (Hirshfeld partitioning):
+  Kohn-Sham eigenvalues and eigenfunctions calculated by the ELPA eigensolver library.
+  Using pulay charge density mixing.
+  Charge density mixing - mixing parameter:     0.4000
+  Spin density mixing - mixing parameter:     0.6000
+  Convergence accuracy of self-consistent charge density: 0.1000E-03
+  Convergence accuracy of sum of eigenvalues: 0.1000E-04
+  Convergence accuracy of total energy: 0.1000E-04
+  Maximum number of s.-c. iterations  :   100
+  Number of empty states per atom:       10
+ 
+  Reading configuration options for species H                   .
+  | Found nuclear charge :   1.0000
+  | Found atomic mass :    1.00794000000000      amu
+  | Found l_max for Hartree potential  :   6
+  | Found cutoff potl. onset [A], width [A], scale factor :    4.00000    2.00000    1.00000
+  | Threshold for basis-dependent cutoff potential is   0.100000E-03
+  | Found data for basic radial integration grid :    24 points, outermost radius =    7.000 A
+  | Found multiplier for basic radial grid :   2
+  | Found angular grid specification: user-specified.
+  | Specified grid contains     6 separate shells.
+  | Check grid settings after all constraints further below.
+  | Found free-atom valence shell :  1 s   1.000
+  | No ionic wave fns used. Skipping ion_occ.
+  | Found hydrogenic basis function :  2 s   2.100
+  | Found hydrogenic basis function :  2 p   3.500
+  | Found hydrogenic basis function :  1 s   0.850
+  | Found hydrogenic basis function :  2 p   3.700
+  | Found hydrogenic basis function :  2 s   1.200
+  | Found hydrogenic basis function :  3 d   7.000
+  Species H                   : Missing cutoff potential type.
+  Defaulting to exp(1/x)/(1-x)^2 type cutoff potential.
+  Species H : No 'logarithmic' tag. Using default grid for free atom:
+  | Default logarithmic grid data [bohr] : 0.1000E-03 0.1000E+03 0.1012E+01
+  Species H : On-site basis accuracy parameter (for Gram-Schmidt orthonormalisation) not specified.
+  Using default value basis_acc =  0.1000000E-03.
+  Species H                   : Using default innermost maximum threshold i_radial=  2 for radial functions.
+  Species H                   : Default cutoff onset for free atom density etc. : 0.40000000E+01 AA.
+  Species H                   : Basic radial grid will be enhanced according to radial_multiplier =   2, to contain    49 grid points.
+ 
+  Finished reading input file 'control.in'. Consistency checks are next.
+ 
+  Target number of points in a grid batch is not set. Defaulting to  100
+  Method for grid partitioning is not set. Defaulting to parallel hash+maxmin partitioning.
+  Batch size limit is not set. Defaulting to    200
+  By default, will store active basis functions for each batch.
+  If in need of memory, prune_basis_once .false. can be used to disable this option.
+  communication_type for Hartree potential was not specified.
+  Defaulting to calc_hartree .
+  Pulay mixer: Number of relevant iterations not set.
+  Defaulting to    8 iterations.
+  Pulay mixer: Number of initial linear mixing iterations not set.
+  Defaulting to    0 iterations.
+  Work space size for distributed Hartree potential not set.
+  Defaulting to   0.200000E+03 MB.
+  Algorithm-dependent basis array size parameters:
+  | n_max_pulay                         :        8
+  Calculation of forces was not defined in control.in. No forces will be calculated.
+  Geometry relaxation not requested: no relaxation will be performed.
+  No accuracy limit for integral partition fn. given. Defaulting to 0.1000E-14.
+  No threshold value for u(r) in integrations given. Defaulting to 0.1000E-05.
+  No accuracy for occupation numbers given. Defaulting to 0.1000E-07.
+  No threshold value for occupation numbers given. Defaulting to 0.0000E+00.
+  No accuracy for fermi level given. Defaulting to 0.1000E-19.
+  Maximum # of iterations to find E_F not set. Defaulting to  200.
+  Will not use alltoall communication since running on < 1024 CPUs.
+  Threshold for basis singularities not set.
+  Default threshold for basis singularities: 0.1000E-04
+  partition_type (choice of integration weights) for integrals was not specified.
+  | Using a version of the partition function of Stratmann and coworkers ('stratmann_smoother').
+  | At each grid point, the set of atoms used to build the partition table is smoothly restricted to
+  | only those atoms whose free-atom density would be non-zero at that grid point.
+  Partitioning for Hartree potential was not defined. Using partition_type for integrals.
+  | Adjusted default value of keyword multip_moments_threshold to:       0.10000000E-11
+  | This value may affect high angular momentum components of the Hartree potential in periodic systems.
+  No q(lm)/r^(l+1) cutoff set for long-range Hartree potential.
+  | Using default value of  0.100000E-09 .
+  | Verify using the multipole_threshold keyword.
+  Defaulting to new monopole extrapolation.
+  Density update method: automatic selection selected.
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+          Reading geometry description geometry.in.
+------------------------------------------------------------
+  Input structure read successfully.
+  The structure contains        2 atoms,  and a total of          2.000 electrons.
+
+  Input geometry:
+  | No unit cell requested.
+  | Atomic structure:
+  |       Atom                x [A]            y [A]            z [A]
+  |    1: Species H              0.000000         0.000000         0.000000
+  |    2: Species H              0.000000         0.000000         0.460000
+  |
+
+  | The smallest distance between any two atoms is         0.46000000 AA.
+  |
+  | The first atom of this pair is atom number                      1 .
+  | The second atom of this pair is atom number                     2 .
+
+  Initial moments and charges:
+  |  Atom   Moment         Charge        Species
+  |     1  (Hund's rule)   0.000000E+00   H
+  |     2  (Hund's rule)   0.000000E+00   H
+
+  Structure-dependent array size parameters: 
+  | Number of distinct atom types in initial rho :        1
+  | Maximum number of distinct radial functions  :        7
+  | Maximum number of basis functions            :       30
+  | Number of Kohn-Sham states (occupied + empty):       11
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Preparing all fixed parts of the calculation.
+------------------------------------------------------------
+  Determining machine precision:
+    2.225073858507201E-308
+  Setting up grids for atomic and cluster calculations.
+
+  Creating wave function, potential, and density for free atoms.
+
+  Species: H
+
+  List of occupied orbitals and eigenvalues:
+    n    l              occ      energy [Ha]    energy [eV]
+    1    0           1.0000        -0.238386        -6.4868
+
+  Spin-polarized or charged system:
+  Charge density initialized according to selected moments and charges.
+
+  Creating spin-polarized density from free atoms.
+
+  Species: H
+  Charge:   0.000000
+  applying Hund's rules ...
+
+  List of occupied orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    occupation
+  Spin-up
+    1    0        -0.278991        -7.5917     1.00000000
+  Spin-down
+    1    0         0.090850         2.4721     0.00000000
+
+  Creating fixed part of basis set: Ionic, confined, hydrogenic.
+ 
+  H                    hydrogenic:
+ 
+  List of hydrogenic basis orbitals: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    2    0         2.100000       -14.9965           0.193243           1.317208           5.373006
+    2    1         3.500000       -41.6672           0.602369           0.602369           4.056063
+    1    0         0.850000        -9.8292           0.624871           0.624871           5.373006
+    2    1         3.700000       -46.5653           0.573622           0.573622           3.910002
+    2    0         1.200000        -4.5995           0.334980           2.228188           5.505995
+    3    2         7.000000       -74.0753           0.680699           0.680699           3.769201
+ 
+
+  Adding cutoff potential to free-atom effective potential.
+  Creating atomic-like basis functions for current effective potential.
+
+  Species H                   :
+
+  List of atomic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    1    0        -0.238386        -6.4868       5.373006
+
+  Assembling full basis from fixed parts.
+  | Species H :   atomic orbital   1 s accepted.
+  | Species H :    hydro orbital   2 s accepted.
+  | Species H :    hydro orbital   1 s accepted.
+  | Species H :    hydro orbital   2 s accepted.
+  | Species H :    hydro orbital   2 p accepted.
+  | Species H :    hydro orbital   2 p accepted.
+  | Species H :    hydro orbital   3 d accepted.
+ 
+  Basis size parameters after reduction:
+  | Total number of radial functions:        7
+  | Total number of basis functions :       30
+ 
+  Testing on-site integration grid accuracy.
+  |  Species  Function  <phi|h_atom|phi> (log., in eV)  <phi|h_atom|phi> (rad., in eV)
+           1        1                 -6.4870767962                 -6.4871688290
+           1        2                 13.5032046589                 13.5028982997
+           1        3                 32.8195184817                 32.8119941656
+           1        4                 33.8513856511                 33.7670005767 ***
+           1        5                 28.8544614965                 28.8544615203
+           1        6                 59.6326952547                 59.6327656460
+           1        7                 60.2719308513                 60.2719305949
+ * Note: Onsite integrals marked "***" above are less accurate than
+ * onsite_accuracy_threshold =    0.03000 eV. Usually, this is harmless.
+ * When in doubt, tighten the "radial" and/or "radial_multiplier" flags to check.
+
+  Preparing densities etc. for the partition functions (integrals / Hartree potential).
+
+  Preparations completed.
+  max(cpu_time)          :      0.077 s.
+  Wall clock time (cpu1) :      0.078 s.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency loop: Initialization.
+
+          Date     :  20220120, Time     :  153442.710
+------------------------------------------------------------
+
+  Initializing index lists of integration centers etc. from given atomic structure:
+  | Number of centers in hartree potential         :         2
+  | Number of centers in hartree multipole         :         2
+  | Number of centers in electron density summation:         2
+  | Number of centers in basis integrals           :         2
+  | Number of centers in integrals                 :         2
+  Using modified Scalapack Eigenvalue solver (ELPA)
+  * Using 8 tasks for Scalapack Eigenvalue solver.
+  Detailed listing of tasks and assigned k-points:
+  (for non-periodic systems, the "k-point" denotes an internal label only)
+   Task     0 k-point     1 on csky019
+   Task     1 k-point     1 on csky019
+   Task     2 k-point     1 on csky019
+   Task     3 k-point     1 on csky019
+   Task     4 k-point     1 on csky019
+   Task     5 k-point     1 on csky019
+   Task     6 k-point     1 on csky019
+   Task     7 k-point     1 on csky019
+  Tasks:     8 split into      4 X      2 BLACS grid
+  Calculating blocksize based on n_basis =           30 max_nprow =            4 max_npcol =            2
+  Scalapack blocksize set to:            4
+  Required Scalapack workspace - INTEGER:            1 REAL:             1
+  Partitioning the integration grid into batches with parallel hashing+maxmin method.
+  | Number of batches:      445
+  | Maximal batch size:     197
+  | Minimal batch size:      49
+  | Average batch size:      64.944
+  | Standard deviation of batch sizes:      18.170
+
+  Integration load balanced across     8 MPI tasks.
+  Work distribution over tasks is as follows:
+  Task     0 has       3596 integration points.
+  Task     1 has       3677 integration points.
+  Task     2 has       3626 integration points.
+  Task     3 has       3591 integration points.
+  Task     4 has       3580 integration points.
+  Task     5 has       3585 integration points.
+  Task     6 has       3656 integration points.
+  Task     7 has       3589 integration points.
+  Initializing partition tables, free-atom densities, potentials, etc. across the integration grid (initialize_grid_storage).
+  | initialize_grid_storage: Actual outermost partition radius vs. multipole_radius_free
+  | (-- VB: in principle, multipole_radius_free should be larger, hence this output)
+  | Species        1: outer_partition_radius =              6.000000000000000 AA, multipole_radius_free =              6.071692442739658 AA.
+  | Original list of interatomic distances with           2 x          2 entries is created.
+  | Net number of integration points:    28900
+  | of which are non-zero points    :    25914
+  Obtaining max. number of non-zero basis functions in each batch (get_n_compute_maxes).
+  | Maximal number of non-zero basis functions:       30 in task     0
+  | Maximal number of non-zero basis functions:       30 in task     1
+  | Maximal number of non-zero basis functions:       30 in task     2
+  | Maximal number of non-zero basis functions:       30 in task     3
+  | Maximal number of non-zero basis functions:       30 in task     4
+  | Maximal number of non-zero basis functions:       30 in task     5
+  | Maximal number of non-zero basis functions:       30 in task     6
+  | Maximal number of non-zero basis functions:       30 in task     7
+  Selecting the method for density update.
+  Loop over occupied states selected for charge density update.
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.082 s, elapsed        0.090 s
+  Integrating overlap matrix.
+  Time summed over all CPUs for integration: real work        0.021 s, elapsed        0.025 s
+  Deallocating overlap matrix.
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Transforming overlap matrix with ScaLAPACK and checking for singularities.
+  : Overlap matrix is nonsingular, using Cholesky decomposition
+  | Lowest eigenvalue:  0.636481E-04
+  Factoring overlap matrix with Cholesky decomposition
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.19417616E+00
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Writing Kohn-Sham eigenvalues.
+
+  Spin-up eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       1.00000          -0.762022          -20.73568
+      2       1.00000          -0.010460           -0.28462
+      3       0.00000          -0.003542           -0.09637
+      4       0.00000           0.137067            3.72978
+      5       0.00000           0.202615            5.51345
+      6       0.00000           0.202615            5.51345
+      7       0.00000           0.264270            7.19115
+      8       0.00000           0.551878           15.01736
+      9       0.00000           0.675653           18.38545
+     10       0.00000           0.675653           18.38545
+     11       0.00000           0.709196           19.29819
+
+  Spin-down eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       0.00000           0.099200            2.69937
+      2       0.00000           0.111453            3.03279
+      3       0.00000           0.506094           13.77151
+      4       0.00000           0.527142           14.34425
+      5       0.00000           1.133860           30.85391
+      6       0.00000           1.190830           32.40412
+      7       0.00000           1.190830           32.40412
+      8       0.00000           1.417614           38.57524
+      9       0.00000           1.417614           38.57524
+     10       0.00000           1.542923           41.98507
+     11       0.00000           1.598818           43.50606
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    2.00
+  | S                 :    1.00
+  | J                 :    3.00
+
+  Highest occupied state (VBM) at     -0.28462082 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at    -0.09637417 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:      0.18824665 eV.
+  Calculating total energy contributions from superposition of free atom densities.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.77248181 Ha         -21.02029946 eV
+  | XC energy correction          :          -0.71705120 Ha         -19.51195598 eV
+  | XC potential correction       :           0.92587989 Ha          25.19447374 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.00000000 Ha           0.00000000 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -0.52666877 Ha         -14.33138653 eV
+  | Total energy, T -> 0          :          -0.52666877 Ha         -14.33138653 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -0.52666877 Ha         -14.33138653 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.29177247 Ha          35.15091725 eV
+  | Electrostatic energy          :          -1.10139004 Ha         -29.97034780 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00000000 Ha           0.00000000 eV
+  | Sum of eigenvalues per atom                           :         -10.51014973 eV
+  | Total energy (T->0) per atom                          :          -7.16569326 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :          -7.16569326 eV
+  Initialize hartree_potential_storage
+  Max. number of atoms included in rho_multipole:            2
+
+  End scf initialization - timings             :  max(cpu_time)    wall_clock(cpu1)
+  | Time for scf. initialization               :        0.041 s           0.042 s
+  | Boundary condition initialization          :        0.000 s           0.000 s
+  | Integration                                :        0.015 s           0.015 s
+  | Solution of K.-S. eqns.                    :        0.008 s           0.008 s
+  | Grid partitioning                          :        0.007 s           0.007 s
+  | Preloading free-atom quantities on grid    :        0.004 s           0.004 s
+  | Free-atom superposition energy             :        0.003 s           0.003 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    1
+
+  Date     :  20220120, Time     :  153442.752
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -6.570993E-07
+  | <rho_up-rho_dn> = N_up-N_dn =      2.0000; <|rho_up-rho_dn|> =      2.2630
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.425422E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.035 s, elapsed        0.042 s
+  | RMS charge density error from multipole expansion :   0.816343E-03
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.067 s, elapsed        0.081 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.78687315E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Writing Kohn-Sham eigenvalues.
+
+  Spin-up eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       1.00000          -0.592287          -16.11696
+      2       0.00000           0.059253            1.61236
+      3       0.00000           0.064541            1.75626
+      4       0.00000           0.184824            5.02931
+      5       0.00000           0.211024            5.74225
+      6       0.00000           0.211024            5.74225
+      7       0.00000           0.327600            8.91444
+      8       0.00000           0.611068           16.62801
+      9       0.00000           0.719610           19.58159
+     10       0.00000           0.719610           19.58159
+     11       0.00000           0.796963           21.68647
+
+  Spin-down eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       1.00000          -0.392745          -10.68713
+      2       0.00000           0.075377            2.05111
+      3       0.00000           0.086160            2.34454
+      4       0.00000           0.245986            6.69361
+      5       0.00000           0.319826            8.70291
+      6       0.00000           0.319826            8.70291
+      7       0.00000           0.378505           10.29966
+      8       0.00000           0.718324           19.54658
+      9       0.00000           0.797954           21.71343
+     10       0.00000           0.797954           21.71343
+     11       0.00000           0.869806           23.66862
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -10.68712958 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.61235731 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     12.29948689 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.98503226 Ha         -26.80409150 eV
+  | XC energy correction          :          -0.45292304 Ha         -12.32466310 eV
+  | XC potential correction       :           0.58080979 Ha          15.80463843 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.05587727 Ha           1.52049791 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -0.76428390 Ha         -20.79722309 eV
+  | Total energy, T -> 0          :          -0.76428390 Ha         -20.79722309 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -0.76428390 Ha         -20.79722309 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           0.87155997 Ha          23.71635336 eV
+  | Electrostatic energy          :          -1.18292082 Ha         -32.18891336 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.00008162 Ha          -0.00222092 eV
+  | Sum of eigenvalues per atom                           :         -13.40204575 eV
+  | Total energy (T->0) per atom                          :         -10.39861155 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -10.39861155 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.9375E-01 0.9375E-01
+  | Change of sum of eigenvalues  : -.5784E+01 eV
+  | Change of total energy        : -.6466E+01 eV
+
+  End self-consistency iteration #     1       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.029 s           0.029 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.001 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.006 s           0.006 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    2
+
+  Date     :  20220120, Time     :  153442.783
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.942596E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -2.0000; <|rho_up-rho_dn|> =      2.0000
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.416778E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.035 s, elapsed        0.042 s
+  | RMS charge density error from multipole expansion :   0.786104E-03
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.074 s, elapsed        0.079 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.11693440E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -13.44415738 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.21747509 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     14.66163247 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -1.25600253 Ha         -34.17756776 eV
+  | XC energy correction          :          -0.61095728 Ha         -16.62499349 eV
+  | XC potential correction       :           0.78782514 Ha          21.43781288 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.04135991 Ha           1.12546036 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.00079042 Ha         -27.23289285 eV
+  | Total energy, T -> 0          :          -1.00079042 Ha         -27.23289285 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.00079042 Ha         -27.23289285 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           0.81336040 Ha          22.13266248 eV
+  | Electrostatic energy          :          -1.20319353 Ha         -32.74056184 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.00007028 Ha          -0.00191254 eV
+  | Sum of eigenvalues per atom                           :         -17.08878388 eV
+  | Total energy (T->0) per atom                          :         -13.61644643 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -13.61644643 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1546E+00 0.3269E+00
+  | Change of sum of eigenvalues  : -.7373E+01 eV
+  | Change of total energy        : -.6436E+01 eV
+
+  End self-consistency iteration #     2       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.028 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.001 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.006 s           0.006 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    3
+
+  Date     :  20220120, Time     :  153442.812
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.786687E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -1.8814; <|rho_up-rho_dn|> =      1.8814
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.396153E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.034 s
+  | RMS charge density error from multipole expansion :   0.667245E-03
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.066 s, elapsed        0.071 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.90795560E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.84704676 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.36499609 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.21204285 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -1.07654940 Ha         -29.29439962 eV
+  | XC energy correction          :          -0.49861385 Ha         -13.56797331 eV
+  | XC potential correction       :           0.64063144 Ha          17.43246850 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.06659191 Ha           1.81205815 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -0.83095556 Ha         -22.61145112 eV
+  | Total energy, T -> 0          :          -0.83095556 Ha         -22.61145112 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -0.83095556 Ha         -22.61145112 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           0.80609489 Ha          21.93495812 eV
+  | Electrostatic energy          :          -1.13843660 Ha         -30.97843593 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.00006386 Ha          -0.00173784 eV
+  | Sum of eigenvalues per atom                           :         -14.64719981 eV
+  | Total energy (T->0) per atom                          :         -11.30572556 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -11.30572556 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.2571E+00 0.2851E+00
+  | Change of sum of eigenvalues  : 0.4883E+01 eV
+  | Change of total energy        : 0.4621E+01 eV
+
+  End self-consistency iteration #     3       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.026 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.002 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.004 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    4
+
+  Date     :  20220120, Time     :  153442.840
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.852628E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -1.9221; <|rho_up-rho_dn|> =      1.9221
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =  -0.134609E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.034 s
+  | RMS charge density error from multipole expansion :   0.296319E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.068 s, elapsed        0.072 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.17110443E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -17.69539020 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at    -0.42558648 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     17.26980372 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -1.38341924 Ha         -37.64475287 eV
+  | XC energy correction          :          -0.52587442 Ha         -14.30977095 eV
+  | XC potential correction       :           0.67637579 Ha          18.40512172 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.22111451 Ha           6.01683194 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -0.97481901 Ha         -26.52617499 eV
+  | Total energy, T -> 0          :          -0.97481901 Ha         -26.52617499 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -0.97481901 Ha         -26.52617499 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :          -0.36263965 Ha          -9.86792698 eV
+  | Electrostatic energy          :          -0.08630495 Ha          -2.34847706 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00026531 Ha           0.00721948 eV
+  | Sum of eigenvalues per atom                           :         -18.82237643 eV
+  | Total energy (T->0) per atom                          :         -13.26308750 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -13.26308750 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1890E+00 0.3052E+00
+  | Change of sum of eigenvalues  : -.8350E+01 eV
+  | Change of total energy        : -.3915E+01 eV
+
+  End self-consistency iteration #     4       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.025 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.001 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.005 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    5
+
+  Date     :  20220120, Time     :  153442.869
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.043016E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -1.3308; <|rho_up-rho_dn|> =      1.3458
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =  -0.162293E-04
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.131663E-01
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.074 s, elapsed        0.079 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.39430787E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -42.73363771 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at    -6.13622689 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     36.59741082 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -3.17525599 Ha         -86.40311168 eV
+  | XC energy correction          :          -1.01077899 Ha         -27.50469579 eV
+  | XC potential correction       :           1.30173106 Ha          35.42190437 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.51048945 Ha         -13.89112483 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -3.35780904 Ha         -91.37063277 eV
+  | Total energy, T -> 0          :          -3.35780904 Ha         -91.37063277 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -3.35780904 Ha         -91.37063277 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :          -6.96306532 Ha        -189.47464765 eV
+  | Electrostatic energy          :           4.61603527 Ha         125.60871067 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00113929 Ha           0.03100160 eV
+  | Sum of eigenvalues per atom                           :         -43.20155584 eV
+  | Total energy (T->0) per atom                          :         -45.68531639 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -45.68531639 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.5709E+00 0.1786E+00
+  | Change of sum of eigenvalues  : -.4876E+02 eV
+  | Change of total energy        : -.6484E+02 eV
+
+  End self-consistency iteration #     5       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.027 s           0.027 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.001 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    6
+
+  Date     :  20220120, Time     :  153442.900
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -2.084875E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.7407; <|rho_up-rho_dn|> =      1.8473
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =  -0.413095E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.034 s
+  | RMS charge density error from multipole expansion :   0.457926E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.070 s, elapsed        0.079 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.18944936E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -20.40711919 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at    -0.75629550 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     19.65082369 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -1.55488007 Ha         -42.31043953 eV
+  | XC energy correction          :          -0.61447776 Ha         -16.72079063 eV
+  | XC potential correction       :           0.78933770 Ha          21.47897169 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.18258965 Ha           4.96851714 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.16044614 Ha         -31.57734616 eV
+  | Total energy, T -> 0          :          -1.16044614 Ha         -31.57734616 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.16044614 Ha         -31.57734616 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :          -0.88989012 Ha         -24.21514226 eV
+  | Electrostatic energy          :           0.34392174 Ha           9.35858672 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00051578 Ha           0.01403499 eV
+  | Sum of eigenvalues per atom                           :         -21.15521976 eV
+  | Total energy (T->0) per atom                          :         -15.78867308 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -15.78867308 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1989E+01 0.5596E+00
+  | Change of sum of eigenvalues  : 0.4409E+02 eV
+  | Change of total energy        : 0.5979E+02 eV
+
+  End self-consistency iteration #     6       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.027 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    7
+
+  Date     :  20220120, Time     :  153442.930
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -2.100489E-07
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.7990; <|rho_up-rho_dn|> =      1.0219
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =  -0.357142E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.040 s
+  | RMS charge density error from multipole expansion :   0.402487E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.071 s, elapsed        0.075 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.14778277E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -17.42602989 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     0.02884381 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     17.45487370 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -1.28351248 Ha         -34.92615152 eV
+  | XC energy correction          :          -0.63576699 Ha         -17.30009988 eV
+  | XC potential correction       :           0.81657474 Ha          22.22012931 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :           0.04250063 Ha           1.15650107 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.02321974 Ha         -27.84322586 eV
+  | Total energy, T -> 0          :          -1.02321974 Ha         -27.84322586 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.02321974 Ha         -27.84322586 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :          -0.16501076 Ha          -4.49017120 eV
+  | Electrostatic energy          :          -0.22244200 Ha          -6.05295478 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00060748 Ha           0.01653045 eV
+  | Sum of eigenvalues per atom                           :         -17.46307576 eV
+  | Total energy (T->0) per atom                          :         -13.92161293 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -13.92161293 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.7554E+00 0.1760E+00
+  | Change of sum of eigenvalues  : 0.7384E+01 eV
+  | Change of total energy        : 0.3734E+01 eV
+
+  End self-consistency iteration #     7       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.028 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    8
+
+  Date     :  20220120, Time     :  153442.960
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -7.809206E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.1701; <|rho_up-rho_dn|> =      0.4935
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.404069E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.280946E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.068 s, elapsed        0.074 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.79183177E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -10.03583644 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.37117443 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     11.40701087 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.74893290 Ha         -20.37950098 eV
+  | XC energy correction          :          -0.88199253 Ha         -24.00023792 eV
+  | XC potential correction       :           1.13355712 Ha          30.84565857 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.59443731 Ha         -16.17546231 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05482128 Ha         -28.70314747 eV
+  | Total energy, T -> 0          :          -1.05482128 Ha         -28.70314747 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05482128 Ha         -28.70314747 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.75157760 Ha          47.66285147 eV
+  | Electrostatic energy          :          -1.92440635 Ha         -52.36576103 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00019305 Ha           0.00525314 eV
+  | Sum of eigenvalues per atom                           :         -10.18975049 eV
+  | Total energy (T->0) per atom                          :         -14.35157374 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35157374 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.5758E+00 0.1646E+00
+  | Change of sum of eigenvalues  : 0.1455E+02 eV
+  | Change of total energy        : -.8599E+00 eV
+
+  End self-consistency iteration #     8       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.025 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.009 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    9
+
+  Date     :  20220120, Time     :  153442.990
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -4.841491E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0847; <|rho_up-rho_dn|> =      0.1614
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.311667E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.229433E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.069 s, elapsed        0.075 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.93801916E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.54277939 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.03858604 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     12.58136543 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.86054013 Ha         -23.41648838 eV
+  | XC energy correction          :          -0.81577094 Ha         -22.19825658 eV
+  | XC potential correction       :           1.04841684 Ha          28.52887380 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.46085435 Ha         -12.54048480 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05176423 Ha         -28.61996080 eV
+  | Total energy, T -> 0          :          -1.05176423 Ha         -28.61996080 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05176423 Ha         -28.61996080 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.50467099 Ha          40.94418073 eV
+  | Electrostatic energy          :          -1.74066428 Ha         -47.36588495 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00023043 Ha           0.00627030 eV
+  | Sum of eigenvalues per atom                           :         -11.70824419 eV
+  | Total energy (T->0) per atom                          :         -14.30998040 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.30998040 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.8688E-01 0.6791E-01
+  | Change of sum of eigenvalues  : -.3037E+01 eV
+  | Change of total energy        : 0.8319E-01 eV
+
+  End self-consistency iteration #     9       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.025 s
+  | Charge density update                      :        0.006 s           0.005 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.005 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   10
+
+  Date     :  20220120, Time     :  153443.019
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -5.916555E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.1171; <|rho_up-rho_dn|> =      0.1261
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.714630E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.474862E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.066 s, elapsed        0.071 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.31385947E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at     -5.09603842 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.90006132 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:      6.99609973 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.38523619 Ha         -10.48281009 eV
+  | XC energy correction          :          -1.11633551 Ha         -30.37703475 eV
+  | XC potential correction       :           1.43658843 Ha          39.09156001 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -1.06830244 Ha         -29.06998849 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.09630137 Ha         -29.83187816 eV
+  | Total energy, T -> 0          :          -1.09630137 Ha         -29.83187816 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.09630137 Ha         -29.83187816 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           2.43380933 Ha          66.22732141 eV
+  | Electrostatic energy          :          -2.41377519 Ha         -65.68216482 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00005784 Ha           0.00157377 eV
+  | Sum of eigenvalues per atom                           :          -5.24140505 eV
+  | Total energy (T->0) per atom                          :         -14.91593908 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.91593908 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.5093E-01 0.4026E-01
+  | Change of sum of eigenvalues  : 0.1293E+02 eV
+  | Change of total energy        : -.1212E+01 eV
+
+  End self-consistency iteration #    10       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.025 s
+  | Charge density update                      :        0.006 s           0.005 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.005 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   11
+
+  Date     :  20220120, Time     :  153443.050
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.614770E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0024; <|rho_up-rho_dn|> =      0.4330
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.127627E-04
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.857675E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.061 s, elapsed        0.067 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : 0.15636680E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at      0.86455624 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+ * WARNING: The VBM is higher than the internal energy zero!
+
+  Lowest unoccupied state (CBM) at     2.62227772 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:      1.75772149 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :           0.05650864 Ha           1.53767832 eV
+  | XC energy correction          :          -1.63993978 Ha         -44.62503180 eV
+  | XC potential correction       :           2.11604889 Ha          57.58061997 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -2.19606250 Ha         -59.75790101 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.62646040 Ha         -44.25823936 eV
+  | Total energy, T -> 0          :          -1.62646040 Ha         -44.25823936 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.62646040 Ha         -44.25823936 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           3.01112277 Ha          81.93681950 eV
+  | Electrostatic energy          :          -2.99764340 Ha         -81.57002706 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.00020271 Ha          -0.00551589 eV
+  | Sum of eigenvalues per atom                           :           0.76883916 eV
+  | Total energy (T->0) per atom                          :         -22.12911968 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -22.12911968 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.3846E+00 0.1786E+00
+  | Change of sum of eigenvalues  : 0.1202E+02 eV
+  | Change of total energy        : -.1443E+02 eV
+
+  End self-consistency iteration #    11       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.025 s           0.024 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.008 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   12
+
+  Date     :  20220120, Time     :  153443.079
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -1.395795E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0061; <|rho_up-rho_dn|> =      1.0398
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.119014E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.034 s
+  | RMS charge density error from multipole expansion :   0.215346E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.070 s, elapsed        0.076 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10075267E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.51422648 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.10723720 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.62146368 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.92295583 Ha         -25.11490607 eV
+  | XC energy correction          :          -0.77827793 Ha         -21.17801990 eV
+  | XC potential correction       :           1.00102244 Ha          27.23920652 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.39063056 Ha         -10.62959841 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05385754 Ha         -28.67692270 eV
+  | Total energy, T -> 0          :          -1.05385754 Ha         -28.67692270 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05385754 Ha         -28.67692270 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.29563462 Ha          35.25601174 eV
+  | Electrostatic energy          :          -1.57121423 Ha         -42.75491453 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00032121 Ha           0.00874050 eV
+  | Sum of eigenvalues per atom                           :         -12.55745304 eV
+  | Total energy (T->0) per atom                          :         -14.33846135 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.33846135 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1110E+01 0.3556E+00
+  | Change of sum of eigenvalues  : -.2665E+02 eV
+  | Change of total energy        : 0.1558E+02 eV
+
+  End self-consistency iteration #    12       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.026 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   13
+
+  Date     :  20220120, Time     :  153443.110
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.276906E-08
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0155; <|rho_up-rho_dn|> =      0.0521
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.312055E-06
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.032 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.299055E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.069 s, elapsed        0.075 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.77644323E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -10.05816704 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     2.04266007 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     12.10082711 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.74457464 Ha         -20.26090686 eV
+  | XC energy correction          :          -0.87932585 Ha         -23.92767368 eV
+  | XC potential correction       :           1.13032543 Ha          30.75771984 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.59999227 Ha         -16.32662037 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05658299 Ha         -28.75108591 eV
+  | Total energy, T -> 0          :          -1.05658299 Ha         -28.75108591 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05658299 Ha         -28.75108591 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.71276270 Ha          46.60664435 eV
+  | Electrostatic energy          :          -1.89001984 Ha         -51.43005658 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00025394 Ha           0.00691018 eV
+  | Sum of eigenvalues per atom                           :         -10.13045343 eV
+  | Total energy (T->0) per atom                          :         -14.37554296 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.37554296 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1214E+00 0.1053E-01
+  | Change of sum of eigenvalues  : 0.4854E+01 eV
+  | Change of total energy        : -.7416E-01 eV
+
+  End self-consistency iteration #    13       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.026 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.009 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   14
+
+  Date     :  20220120, Time     :  153443.140
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   6.526992E-09
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0065; <|rho_up-rho_dn|> =      0.0639
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.139886E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.036 s
+  | RMS charge density error from multipole expansion :   0.345949E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.071 s, elapsed        0.074 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.68495671E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at     -9.15652886 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     2.03945795 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     11.19598681 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.67578271 Ha         -18.38898314 eV
+  | XC energy correction          :          -0.92526176 Ha         -25.17765356 eV
+  | XC potential correction       :           1.18844226 Ha          32.33915930 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.69236368 Ha         -18.84017433 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.06798155 Ha         -29.06125656 eV
+  | Total energy, T -> 0          :          -1.06798155 Ha         -29.06125656 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.06798155 Ha         -29.06125656 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.90461823 Ha          51.82729905 eV
+  | Electrostatic energy          :          -2.04733802 Ha         -55.71090205 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00016031 Ha           0.00436231 eV
+  | Sum of eigenvalues per atom                           :          -9.19449157 eV
+  | Total energy (T->0) per atom                          :         -14.53062828 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.53062828 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.7430E-01 0.2925E-01
+  | Change of sum of eigenvalues  : 0.1872E+01 eV
+  | Change of total energy        : -.3102E+00 eV
+
+  End self-consistency iteration #    14       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.027 s           0.027 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.002 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   15
+
+  Date     :  20220120, Time     :  153443.169
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   2.909250E-09
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0035; <|rho_up-rho_dn|> =      0.0418
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.235083E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.041 s
+  | RMS charge density error from multipole expansion :   0.378012E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.071 s, elapsed        0.081 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.65874478E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at     -8.87079306 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     2.04969227 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     10.92048532 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.65429509 Ha         -17.80427522 eV
+  | XC energy correction          :          -0.94396534 Ha         -25.68660375 eV
+  | XC potential correction       :           1.21156522 Ha          32.96836705 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.72734309 Ha         -19.79201261 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.07705396 Ha         -29.30812936 eV
+  | Total energy, T -> 0          :          -1.07705396 Ha         -29.30812936 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.07705396 Ha         -29.30812936 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.99463733 Ha          54.27684327 eV
+  | Electrostatic energy          :          -2.12772595 Ha         -57.89836888 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00007877 Ha           0.00214339 eV
+  | Sum of eigenvalues per atom                           :          -8.90213761 eV
+  | Total energy (T->0) per atom                          :         -14.65406468 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.65406468 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1585E+00 0.1812E-01
+  | Change of sum of eigenvalues  : 0.5847E+00 eV
+  | Change of total energy        : -.2469E+00 eV
+
+  End self-consistency iteration #    15       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.030 s           0.029 s
+  | Charge density update                      :        0.008 s           0.007 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.006 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   16
+
+  Date     :  20220120, Time     :  153443.200
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.364961E-09
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0097; <|rho_up-rho_dn|> =      0.0267
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.310797E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.042 s
+  | RMS charge density error from multipole expansion :   0.294712E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.071 s, elapsed        0.083 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.82633938E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -10.64325573 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.83271272 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     12.47596845 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.78320042 Ha         -21.31196785 eV
+  | XC energy correction          :          -0.86172241 Ha         -23.44865975 eV
+  | XC potential correction       :           1.10576720 Ha          30.08945650 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.55750151 Ha         -15.17038806 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05967280 Ha         -28.83516400 eV
+  | Total energy, T -> 0          :          -1.05967280 Ha         -28.83516400 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05967280 Ha         -28.83516400 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.73526231 Ha          47.21889004 eV
+  | Electrostatic energy          :          -1.93321271 Ha         -52.60539429 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00009660 Ha           0.00262861 eV
+  | Sum of eigenvalues per atom                           :         -10.65598392 eV
+  | Total energy (T->0) per atom                          :         -14.41758200 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.41758200 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.2103E+00 0.1484E-01
+  | Change of sum of eigenvalues  : -.3508E+01 eV
+  | Change of total energy        : 0.4730E+00 eV
+
+  End self-consistency iteration #    16       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.030 s           0.029 s
+  | Charge density update                      :        0.008 s           0.007 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.006 s           0.006 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   17
+
+  Date     :  20220120, Time     :  153443.231
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.594009E-10
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0029; <|rho_up-rho_dn|> =      0.0100
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.362634E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.039 s
+  | RMS charge density error from multipole expansion :   0.235238E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.070 s, elapsed        0.077 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.94889951E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.94279517 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.60885774 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.55165291 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.87811349 Ha         -23.89468386 eV
+  | XC energy correction          :          -0.80536312 Ha         -21.91504547 eV
+  | XC potential correction       :           1.03356206 Ha          28.12465460 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.44242935 Ha         -12.03911522 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05535956 Ha         -28.71779480 eV
+  | Total energy, T -> 0          :          -1.05535956 Ha         -28.71779480 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05535956 Ha         -28.71779480 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52878871 Ha          41.60045742 eV
+  | Electrostatic energy          :          -1.77878515 Ha         -48.40320674 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010803 Ha           0.00293957 eV
+  | Sum of eigenvalues per atom                           :         -11.94734193 eV
+  | Total energy (T->0) per atom                          :         -14.35889740 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35889740 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.8925E-01 0.3402E-02
+  | Change of sum of eigenvalues  : -.2583E+01 eV
+  | Change of total energy        : 0.1174E+00 eV
+
+  End self-consistency iteration #    17       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.030 s           0.028 s
+  | Charge density update                      :        0.008 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.006 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   18
+
+  Date     :  20220120, Time     :  153443.261
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -2.423330E-09
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0006; <|rho_up-rho_dn|> =      0.0055
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.368330E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.237874E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.069 s, elapsed        0.073 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.99787941E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.88738554 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.59681352 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.48419905 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.87371642 Ha         -23.77503342 eV
+  | XC energy correction          :          -0.80793401 Ha         -21.98500297 eV
+  | XC potential correction       :           1.03686216 Ha          28.21445486 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.44760116 Ha         -12.17984734 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05540509 Ha         -28.71903370 eV
+  | Total energy, T -> 0          :          -1.05540509 Ha         -28.71903370 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05540509 Ha         -28.71903370 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.53848995 Ha          41.86444159 eV
+  | Electrostatic energy          :          -1.78596103 Ha         -48.59847232 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010744 Ha           0.00292351 eV
+  | Sum of eigenvalues per atom                           :         -11.88751671 eV
+  | Total energy (T->0) per atom                          :         -14.35951685 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35951685 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.2499E-02 0.1865E-02
+  | Change of sum of eigenvalues  : 0.1197E+00 eV
+  | Change of total energy        : -.1239E-02 eV
+
+  End self-consistency iteration #    18       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.026 s           0.025 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.009 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   19
+
+  Date     :  20220120, Time     :  153443.289
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -7.276069E-10
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0015; <|rho_up-rho_dn|> =      0.0032
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.383446E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.038 s
+  | RMS charge density error from multipole expansion :   0.236681E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.072 s, elapsed        0.081 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.94858308E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.92311191 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.59033656 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.51344847 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.87638955 Ha         -23.84777307 eV
+  | XC energy correction          :          -0.80648098 Ha         -21.94546396 eV
+  | XC potential correction       :           1.03496252 Ha          28.16276298 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.44446530 Ha         -12.09451622 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05538897 Ha         -28.71859512 eV
+  | Total energy, T -> 0          :          -1.05538897 Ha         -28.71859512 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05538897 Ha         -28.71859512 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.53433231 Ha          41.75130652 eV
+  | Electrostatic energy          :          -1.78324031 Ha         -48.52443767 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010462 Ha           0.00284698 eV
+  | Sum of eigenvalues per atom                           :         -11.92388654 eV
+  | Total energy (T->0) per atom                          :         -14.35929756 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35929756 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.4658E-02 0.5523E-03
+  | Change of sum of eigenvalues  : -.7274E-01 eV
+  | Change of total energy        : 0.4386E-03 eV
+
+  End self-consistency iteration #    19       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.027 s           0.027 s
+  | Charge density update                      :        0.006 s           0.005 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   20
+
+  Date     :  20220120, Time     :  153443.320
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.398863E-10
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0003; <|rho_up-rho_dn|> =      0.0026
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.382906E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.035 s, elapsed        0.040 s
+  | RMS charge density error from multipole expansion :   0.236507E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.070 s, elapsed        0.073 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.94686975E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.92665050 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.59061354 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.51726404 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.87668887 Ha         -23.85591782 eV
+  | XC energy correction          :          -0.80631481 Ha         -21.94094221 eV
+  | XC potential correction       :           1.03474666 Ha          28.15688934 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.44411412 Ha         -12.08495999 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05538678 Ha         -28.71853552 eV
+  | Total energy, T -> 0          :          -1.05538678 Ha         -28.71853552 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05538678 Ha         -28.71853552 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.53383365 Ha          41.73773729 eV
+  | Electrostatic energy          :          -1.78290563 Ha         -48.51533060 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010443 Ha           0.00284166 eV
+  | Sum of eigenvalues per atom                           :         -11.92795891 eV
+  | Total energy (T->0) per atom                          :         -14.35926776 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35926776 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.3058E-02 0.4960E-03
+  | Change of sum of eigenvalues  : -.8145E-02 eV
+  | Change of total energy        : 0.5960E-04 eV
+
+  End self-consistency iteration #    20       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.027 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.009 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   21
+
+  Date     :  20220120, Time     :  153443.350
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.017098E-10
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0000; <|rho_up-rho_dn|> =      0.0026
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.369994E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.037 s
+  | RMS charge density error from multipole expansion :   0.236952E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.072 s, elapsed        0.074 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.97828732E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -11.98143846 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.50970806 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.49114652 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88064423 Ha         -23.96354872 eV
+  | XC energy correction          :          -0.80449936 Ha         -21.89154139 eV
+  | XC potential correction       :           1.03237460 Ha          28.09234224 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43961712 Ha         -11.96259046 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05540176 Ha         -28.71894318 eV
+  | Total energy, T -> 0          :          -1.05540176 Ha         -28.71894318 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05540176 Ha         -28.71894318 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.53023768 Ha          41.63988579 eV
+  | Electrostatic energy          :          -1.78114008 Ha         -48.46728758 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010379 Ha           0.00282434 eV
+  | Sum of eigenvalues per atom                           :         -11.98177436 eV
+  | Total energy (T->0) per atom                          :         -14.35947159 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35947159 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.2885E-02 0.5715E-03
+  | Change of sum of eigenvalues  : -.1076E+00 eV
+  | Change of total energy        : -.4077E-03 eV
+
+  End self-consistency iteration #    21       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.027 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.009 s           0.009 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   22
+
+  Date     :  20220120, Time     :  153443.379
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -1.323546E-09
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0021; <|rho_up-rho_dn|> =      0.0025
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.316435E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.039 s
+  | RMS charge density error from multipole expansion :   0.235635E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.073 s, elapsed        0.075 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.96076737E+01
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06911748 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.32373636 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.39285384 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88714819 Ha         -24.14053058 eV
+  | XC energy correction          :          -0.80148873 Ha         -21.80961811 eV
+  | XC potential correction       :           1.02844390 Ha          27.98538248 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43221868 Ha         -11.76126862 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542736 Ha         -28.71963966 eV
+  | Total energy, T -> 0          :          -1.05542736 Ha         -28.71963966 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542736 Ha         -28.71963966 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52448679 Ha          41.48339632 eV
+  | Electrostatic energy          :          -1.77842542 Ha         -48.39341787 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010030 Ha           0.00272922 eV
+  | Sum of eigenvalues per atom                           :         -12.07026529 eV
+  | Total energy (T->0) per atom                          :         -14.35981983 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35981983 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1712E-02 0.2235E-03
+  | Change of sum of eigenvalues  : -.1770E+00 eV
+  | Change of total energy        : -.6965E-03 eV
+
+  End self-consistency iteration #    22       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.028 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.003 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   23
+
+  Date     :  20220120, Time     :  153443.410
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -7.914061E-10
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0017; <|rho_up-rho_dn|> =      0.0018
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294021E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.033 s
+  | RMS charge density error from multipole expansion :   0.235786E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.074 s, elapsed        0.077 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10337395E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06314436 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.24372060 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     13.30686496 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88662598 Ha         -24.12632037 eV
+  | XC energy correction          :          -0.80185719 Ha         -21.81964422 eV
+  | XC potential correction       :           1.02892692 Ha          27.99852617 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43285762 Ha         -11.77865506 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542951 Ha         -28.71969832 eV
+  | Total energy, T -> 0          :          -1.05542951 Ha         -28.71969832 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542951 Ha         -28.71969832 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52606501 Ha          41.52634181 eV
+  | Electrostatic energy          :          -1.77963734 Ha         -48.42639590 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010124 Ha           0.00275476 eV
+  | Sum of eigenvalues per atom                           :         -12.06316019 eV
+  | Total energy (T->0) per atom                          :         -14.35984916 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984916 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.6767E-03 0.1971E-03
+  | Change of sum of eigenvalues  : 0.1421E-01 eV
+  | Change of total energy        : -.5866E-04 eV
+
+  End self-consistency iteration #    23       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.027 s           0.027 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.004 s           0.004 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   24
+
+  Date     :  20220120, Time     :  153443.440
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -7.631451E-11
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0002; <|rho_up-rho_dn|> =      0.0003
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294035E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.035 s
+  | RMS charge density error from multipole expansion :   0.235746E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.072 s, elapsed        0.077 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10350904E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06430719 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.24437888 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     13.30868608 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88671036 Ha         -24.12861658 eV
+  | XC energy correction          :          -0.80181301 Ha         -21.81844201 eV
+  | XC potential correction       :           1.02886980 Ha          27.99697171 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43276030 Ha         -11.77600699 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969871 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969871 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969871 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592899 Ha          41.52264040 eV
+  | Electrostatic energy          :          -1.77954551 Ha         -48.42389710 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010121 Ha           0.00275408 eV
+  | Sum of eigenvalues per atom                           :         -12.06430829 eV
+  | Total energy (T->0) per atom                          :         -14.35984935 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984935 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.5576E-04 0.1798E-04
+  | Change of sum of eigenvalues  : -.2296E-02 eV
+  | Change of total energy        : -.3942E-06 eV
+
+  End self-consistency iteration #    24       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.028 s           0.027 s
+  | Charge density update                      :        0.007 s           0.007 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   25
+
+  Date     :  20220120, Time     :  153443.470
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -4.108425E-11
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0001; <|rho_up-rho_dn|> =      0.0001
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294176E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.035 s
+  | RMS charge density error from multipole expansion :   0.235730E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.076 s, elapsed        0.095 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10342214E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06443879 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.24420569 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.30864449 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672012 Ha         -24.12888200 eV
+  | XC energy correction          :          -0.80180865 Ha         -21.81832347 eV
+  | XC potential correction       :           1.02886400 Ha          27.99681385 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274911 Ha         -11.77570235 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969881 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969881 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969881 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592751 Ha          41.52260024 eV
+  | Electrostatic energy          :          -1.77954839 Ha         -48.42397557 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010116 Ha           0.00275278 eV
+  | Sum of eigenvalues per atom                           :         -12.06444100 eV
+  | Total energy (T->0) per atom                          :         -14.35984940 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984940 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.8502E-05 0.6740E-05
+  | Change of sum of eigenvalues  : -.2654E-03 eV
+  | Change of total energy        : -.9738E-07 eV
+
+  End self-consistency iteration #    25       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.029 s           0.028 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.002 s           0.001 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.012 s           0.012 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.001 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   26
+
+  Date     :  20220120, Time     :  153443.500
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -3.048672E-12
+  | <rho_up-rho_dn> = N_up-N_dn =     -0.0000; <|rho_up-rho_dn|> =      0.0000
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294262E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.044 s
+  | RMS charge density error from multipole expansion :   0.235726E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.074 s, elapsed        0.085 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10335956E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06445352 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.24753634 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     13.31198986 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672123 Ha         -24.12891228 eV
+  | XC energy correction          :          -0.80180837 Ha         -21.81831589 eV
+  | XC potential correction       :           1.02886361 Ha          27.99680321 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274788 Ha         -11.77566902 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969882 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969882 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969882 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592937 Ha          41.52265068 eV
+  | Electrostatic energy          :          -1.77955053 Ha         -48.42403360 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010115 Ha           0.00275237 eV
+  | Sum of eigenvalues per atom                           :         -12.06445614 eV
+  | Total energy (T->0) per atom                          :         -14.35984941 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984941 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.2889E-05 0.7935E-06
+  | Change of sum of eigenvalues  : -.3027E-04 eV
+  | Change of total energy        : -.8285E-08 eV
+
+  End self-consistency iteration #    26       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.032 s           0.032 s
+  | Charge density update                      :        0.007 s           0.006 s
+  | Density mixing                             :        0.003 s           0.003 s
+  | Hartree multipole update                   :        0.001 s           0.002 s
+  | Hartree multipole summation                :        0.006 s           0.006 s
+  | Integration                                :        0.011 s           0.011 s
+  | Solution of K.-S. eqns.                    :        0.003 s           0.003 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   27
+
+  Date     :  20220120, Time     :  153443.533
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   5.373479E-14
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0000; <|rho_up-rho_dn|> =      0.0000
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294273E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.041 s
+  | RMS charge density error from multipole expansion :   0.235725E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.075 s, elapsed        0.095 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10337586E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06446596 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        1
+
+  Lowest unoccupied state (CBM) at     1.24779913 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     13.31226510 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672207 Ha         -24.12893516 eV
+  | XC energy correction          :          -0.80180814 Ha         -21.81830960 eV
+  | XC potential correction       :           1.02886331 Ha          27.99679504 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274697 Ha         -11.77564426 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969881 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969881 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969881 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592957 Ha          41.52265628 eV
+  | Electrostatic energy          :          -1.77955096 Ha         -48.42404549 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010115 Ha           0.00275231 eV
+  | Sum of eigenvalues per atom                           :         -12.06446758 eV
+  | Total energy (T->0) per atom                          :         -14.35984941 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984941 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.1007E-05 0.4222E-06
+  | Change of sum of eigenvalues  : -.2288E-04 eV
+  | Change of total energy        : 0.6028E-09 eV
+
+  End self-consistency iteration #    27       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.031 s           0.032 s
+  | Charge density update                      :        0.008 s           0.008 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.002 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.005 s
+  | Integration                                :        0.012 s           0.012 s
+  | Solution of K.-S. eqns.                    :        0.001 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   28
+
+  Date     :  20220120, Time     :  153443.569
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   2.020606E-13
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0000; <|rho_up-rho_dn|> =      0.0000
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294275E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.033 s, elapsed        0.034 s
+  | RMS charge density error from multipole expansion :   0.235725E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.072 s, elapsed        0.077 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10339657E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06447267 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.24717498 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        2
+
+  Overall HOMO-LUMO gap:     13.31164765 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672244 Ha         -24.12894536 eV
+  | XC energy correction          :          -0.80180805 Ha         -21.81830725 eV
+  | XC potential correction       :           1.02886320 Ha          27.99679204 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274657 Ha         -11.77563340 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969882 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969882 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969882 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592964 Ha          41.52265809 eV
+  | Electrostatic energy          :          -1.77955112 Ha         -48.42404965 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010115 Ha           0.00275232 eV
+  | Sum of eigenvalues per atom                           :         -12.06447268 eV
+  | Total energy (T->0) per atom                          :         -14.35984941 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984941 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.3817E-06 0.2679E-06
+  | Change of sum of eigenvalues  : -.1021E-04 eV
+  | Change of total energy        : -.6761E-09 eV
+
+  End self-consistency iteration #    28       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.027 s           0.027 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.001 s           0.001 s
+  | Hartree multipole summation                :        0.004 s           0.005 s
+  | Integration                                :        0.010 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.002 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   29
+
+  Date     :  20220120, Time     :  153443.600
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   8.304468E-14
+  | <rho_up-rho_dn> = N_up-N_dn =      0.0000; <|rho_up-rho_dn|> =      0.0000
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.294278E-05
+  Summing up the Hartree potential.
+  Time summed over all CPUs for potential: real work        0.034 s, elapsed        0.040 s
+  | RMS charge density error from multipole expansion :   0.235725E-02
+
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work        0.074 s, elapsed        0.085 s
+
+  Updating Kohn-Sham eigenvalues, eigenvectors, occupation numbers, and Fermi level.
+  Solving generalized eigenproblem
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Solving real symmetric generalised eigenvalue problem by standard ScaLAPACK.
+  Using Cholesky factor for transformation
+  Using 1-stage real ELPA solver
+  Determining occupation numbers for Kohn-Sham eigenstates.
+  | Chemical potential (Fermi level) in eV                 : -.10339557E+02
+  | Error in electron count due to remaining E_F inaccuracy: 0.00000000E+00
+  | Maximum occupation number of highest empty state:  0.00E+00
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06447256 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.24728293 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.31175549 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672244 Ha         -24.12894521 eV
+  | XC energy correction          :          -0.80180805 Ha         -21.81830722 eV
+  | XC potential correction       :           1.02886319 Ha          27.99679195 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274658 Ha         -11.77563349 eV
+  | van der Waals energy corr.    :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542953 Ha         -28.71969882 eV
+  | Total energy, T -> 0          :          -1.05542953 Ha         -28.71969882 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542953 Ha         -28.71969882 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592963 Ha          41.52265795 eV
+  | Electrostatic energy          :          -1.77955111 Ha         -48.42404955 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010115 Ha           0.00275232 eV
+  | Sum of eigenvalues per atom                           :         -12.06447261 eV
+  | Total energy (T->0) per atom                          :         -14.35984941 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35984941 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge/spin density : 0.4282E-07 0.2730E-07
+  | Change of sum of eigenvalues  : 0.1523E-06 eV
+  | Change of total energy        : -.8026E-10 eV
+
+  Writing Kohn-Sham eigenvalues.
+
+  Spin-up eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       1.00000          -0.443361          -12.06447
+      2       0.00000           0.045837            1.24728
+      3       0.00000           0.048733            1.32610
+      4       0.00000           0.214118            5.82645
+      5       0.00000           0.347285            9.45011
+      6       0.00000           0.347285            9.45011
+      7       0.00000           0.349059            9.49837
+      8       0.00000           0.696249           18.94589
+      9       0.00000           0.780862           21.24833
+     10       0.00000           0.780862           21.24833
+     11       0.00000           0.824378           22.43246
+
+  Spin-down eigenvalues:
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       1.00000          -0.443361          -12.06447
+      2       0.00000           0.045837            1.24729
+      3       0.00000           0.048734            1.32611
+      4       0.00000           0.214119            5.82647
+      5       0.00000           0.347285            9.45011
+      6       0.00000           0.347285            9.45011
+      7       0.00000           0.349059            9.49838
+      8       0.00000           0.696249           18.94590
+      9       0.00000           0.780862           21.24833
+     10       0.00000           0.780862           21.24833
+     11       0.00000           0.824378           22.43246
+
+  Current spin moment of the entire structure :
+  | N = N_up - N_down :    0.00
+  | S                 :    0.00
+  | J                 :    1.00
+
+  Highest occupied state (VBM) at    -12.06447256 eV
+  | Occupation number:      1.00000000
+  | Spin channel:        2
+
+  Lowest unoccupied state (CBM) at     1.24728293 eV
+  | Occupation number:      0.00000000
+  | Spin channel:        1
+
+  Overall HOMO-LUMO gap:     13.31175549 eV.
+
+  Self-consistency cycle converged.
+
+  End self-consistency iteration #    29       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        0.031 s           0.032 s
+  | Charge density update                      :        0.006 s           0.006 s
+  | Density mixing                             :        0.002 s           0.002 s
+  | Hartree multipole update                   :        0.002 s           0.002 s
+  | Hartree multipole summation                :        0.005 s           0.006 s
+  | Integration                                :        0.011 s           0.010 s
+  | Solution of K.-S. eqns.                    :        0.002 s           0.003 s
+  | Total energy evaluation                    :        0.000 s           0.000 s
+------------------------------------------------------------
+  Obtaining max. number of non-zero basis functions in each batch .
+  Evaluating KS electron density on previously omitted grid points.
+  Evaluating non-empirical van der Waals correction (Tkatchenko/Scheffler 2009).
+  Performing Hirshfeld analysis of fragment charges and moments.
+  ----------------------------------------------------------------------
+  | Atom     1: H
+  |   Hirshfeld charge        :      0.00000044
+  |   Free atom volume        :     10.31539447
+  |   Hirshfeld volume        :      3.90800870
+  |   Hirshfeld spin moment   :     -0.00000000
+  |   Hirshfeld dipole vector :      0.00000000      -0.00000000      -0.06211813
+  |   Hirshfeld dipole moment :      0.06211813
+  |   Hirshfeld second moments:      0.16435441      -0.00000000      -0.00000000
+  |                                 -0.00000000       0.16435441      -0.00000000
+  |                                 -0.00000000      -0.00000000       0.15919485
+  ----------------------------------------------------------------------
+  | Atom     2: H
+  |   Hirshfeld charge        :      0.00000044
+  |   Free atom volume        :     10.31539447
+  |   Hirshfeld volume        :      3.90800870
+  |   Hirshfeld spin moment   :     -0.00000000
+  |   Hirshfeld dipole vector :      0.00000000       0.00000000       0.06211813
+  |   Hirshfeld dipole moment :      0.06211813
+  |   Hirshfeld second moments:      0.16435441      -0.00000000       0.00000000
+  |                                 -0.00000000       0.16435441      -0.00000000
+  |                                  0.00000000      -0.00000000       0.15919485
+  ----------------------------------------------------------------------
+
+
+  Total energy components:
+  | Sum of eigenvalues            :          -0.88672244 Ha         -24.12894521 eV
+  | XC energy correction          :          -0.80180805 Ha         -21.81830722 eV
+  | XC potential correction       :           1.02886319 Ha          27.99679195 eV
+  | Free-atom electrostatic energy:           0.03698434 Ha           1.00639516 eV
+  | Hartree energy correction     :          -0.43274658 Ha         -11.77563349 eV
+  | van der Waals energy corr.    :          -0.00000028 Ha          -0.00000749 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :          -1.05542981 Ha         -28.71970630 eV
+  | Total energy, T -> 0          :          -1.05542981 Ha         -28.71970630 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :          -1.05542981 Ha         -28.71970630 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :           1.52592963 Ha          41.52265795 eV
+  | Electrostatic energy          :          -1.77955111 Ha         -48.42404955 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00010115 Ha           0.00275232 eV
+  | Sum of eigenvalues per atom                           :         -12.06447261 eV
+  | Total energy (T->0) per atom                          :         -14.35985315 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :         -14.35985315 eV
+  Timings for VdW correction (Tkatchenko-Scheffler 2009 or later):
+  | CPU time:        0.003 s, Wall clock time:        0.002 s.
+
+  Energy and forces in a compact form:
+  | Total energy uncorrected      :         -0.287197063010156E+02 eV
+  | Total energy corrected        :         -0.287197063010156E+02 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :         -0.287197063010156E+02 eV
+
+  ------------------------------------ 
+  Start decomposition of the XC Energy 
+  ------------------------------------ 
+  Hartree-Fock part   :          0.000000000 Ha              0.000000000 eV
+  ------------------------------------ 
+  X Energy            :         -0.757998281 Ha            -20.626182685 eV
+  C Energy GGA        :         -0.043809772 Ha             -1.192124538 eV
+  Total XC Energy     :         -0.801808053 Ha            -21.818307223 eV
+  LDA X and C from self-consistent density 
+  X Energy LDA        :         -0.663778105 Ha            -18.062321227 eV
+  C Energy LDA        :         -0.100688921 Ha             -2.739884950 eV
+  ------------------------------------ 
+  End decomposition of the XC Energy 
+  ------------------------------------ 
+
+------------------------------------------------------------------------------
+  Final output of selected total energy values:
+
+  The following output summarizes some interesting total energy values
+  at the end of a run (AFTER all relaxation, molecular dynamics, etc.).
+
+  | Total energy of the DFT / Hartree-Fock s.c.f. calculation      :            -28.719706301 eV
+  | Final zero-broadening corrected energy (caution - metals only) :            -28.719706301 eV
+  | For reference only, the value of 1 Hartree used in FHI-aims is :             27.211384500 eV
+
+  Before relying on these values, please be sure to understand exactly which
+  total energy value is referred to by a given number. Different objects may
+  all carry the same name 'total energy'. Definitions:
+
+  Total energy of the DFT / Hartree-Fock s.c.f. calculation:
+  | Note that this energy does not include ANY quantities calculated after the
+  | s.c.f. cycle, in particular not ANY RPA, MP2, etc. many-body perturbation terms.
+
+  Final zero-broadening corrected energy:
+  | For metallic systems only, a broadening of the occupation numbers at the Fermi
+  | level can be extrapolated back to zero broadening by an electron-gas inspired
+  | formula. For all systems that are not real metals, this value can be
+  | meaningless and should be avoided.
+
+------------------------------------------------------------------------------
+
+------------------------------------------------------------
+          Leaving FHI-aims.
+          Date     :  20220120, Time     :  153443.641
+
+          Computational steps:
+          | Number of self-consistency cycles          :           29
+
+          Detailed time accounting                     :  max(cpu_time)    wall_clock(cpu1)
+          | Total time                                 :        0.984 s           1.077 s
+          | Preparation time                           :        0.077 s           0.078 s
+          | Grid partitioning                          :        0.007 s           0.007 s
+          | Preloading free-atom quantities on grid    :        0.004 s           0.004 s
+          | Free-atom superposition energy             :        0.003 s           0.003 s
+          | Total time for integrations                :        0.301 s           0.303 s
+          | Total time for solution of K.-S. equations :        0.053 s           0.055 s
+          | Total time for density update              :        0.198 s           0.181 s
+          | Total time for mixing                      :        0.052 s           0.052 s
+          | Total time for Hartree multipole update    :        0.040 s           0.042 s
+          | Total time for Hartree multipole sum       :        0.143 s           0.145 s
+          | Total time for total energy evaluation     :        0.005 s           0.015 s
+          | Total time for scaled ZORA corrections     :        0.000 s           0.000 s
+          | Total time for vdW correction              :        0.003 s           0.002 s
+
+          Have a nice day.
+------------------------------------------------------------
